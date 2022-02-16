@@ -67,10 +67,34 @@ class MoviesViewController: UIViewController, UITableViewDataSource,
         let baseUrl = "https://image.tmdb.org/t/p/w200"
         let posterPath = movie["poster_path"] as! String
         let posterUrl = URL(string: baseUrl + posterPath)
+        
         let test = cell.posterView.af.setImage(withURL: posterUrl!)
         
         print(posterUrl)
         return cell
+    }
+    
+    
+    
+    override func prepare(for segue:
+        UIStoryboardSegue, sender: Any?){
+        
+        let cell = sender as! UITableViewCell
+        let indexPath = tableview.indexPath(for: cell)!
+        let movie = movies[indexPath.row]
+        
+        let detailsViewController =
+            segue.destination as!
+            MovieDetailsViewController
+        detailsViewController.movie = movie
+        
+        tableview.deselectRow(at: indexPath, animated: true)
+        
+        
+            
+        
+        
+        
     }
     
 
